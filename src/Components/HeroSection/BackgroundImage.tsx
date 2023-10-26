@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
-import TitleComponent from "./TitleComponent";
-import Background from "./../assets/background-hotel.jpg";
+import { useEffect, useState } from "react";
 
-export default function HeroSection({ scrollbar }) {
+export function BackgroundImage({
+  zoomFactor,
+  scrollbar,
+  Background,
+  scrollSpeed,
+}) {
   const [translateY, setTranslateY] = useState(0);
 
   useEffect(() => {
@@ -11,7 +14,7 @@ export default function HeroSection({ scrollbar }) {
     const handleScroll = () => {
       const scrollValue = scrollbar.offset.y;
       // Adjust the 0.5 value for more or less pronounced effect
-      setTranslateY(scrollValue * 0.5);
+      setTranslateY(scrollValue * scrollSpeed);
     };
 
     // Add the event listener
@@ -22,17 +25,20 @@ export default function HeroSection({ scrollbar }) {
       scrollbar.removeListener(handleScroll);
     };
   }, [scrollbar]);
-
   return (
-    <div className="relative h-screen w-full flex flex-col items-center justify-center">
+    <>
       <div
         className="overflow-hidden bg-cover h-full bg-center bg-no-repeat w-full absolute"
         style={{
           backgroundImage: `url(${Background})`,
-          transform: `translateY(${translateY}px)`,
+          transform: `translateY(${translateY}px) `,
+          maxWidth: "100vw",
+          maxHeight: "100vh",
+          backgroundSize: `${zoomFactor * 100}%`, // adjust the background size
         }}
-      ></div>
-      <TitleComponent />
-    </div>
+      >
+        <div className="bg-black opacity-20 h-full w-full absolute"></div>
+      </div>
+    </>
   );
 }

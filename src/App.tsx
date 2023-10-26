@@ -1,4 +1,4 @@
-import HeroSection from "./Components/HeroSection";
+import HeroSection from "./Components/HeroSection/HeroSection";
 import useSmoothScroll from "./Hooks/useSmoothScroll";
 //
 //container
@@ -11,9 +11,7 @@ function App() {
       <div className="w-screen h-screen bg-red-200 ">
         <HeroSection scrollbar={scrollbar} />
         <div className="flex flex-col bg-green-300 jitems-center justify-center bg-blue h-screen "></div>
-        <div className="flex flex-col bg-green-300 jitems-center justify-center bg-blue h-screen ">
-          HII
-        </div>
+        <div className="flex flex-col bg-green-300 jitems-center justify-center bg-blue h-screen "></div>
       </div>
     </>
   );
