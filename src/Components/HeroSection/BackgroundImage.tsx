@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 
+import Scrollbar from "smooth-scrollbar";
+
+type backgroundProps = {
+  zoomFactor: number;
+  scrollbar: Scrollbar;
+  Background: string;
+  scrollSpeed: number;
+};
+
 export function BackgroundImage({
   zoomFactor,
   scrollbar,
   Background,
   scrollSpeed,
-}) {
+}: backgroundProps) {
   const [translateY, setTranslateY] = useState(0);
 
   useEffect(() => {
@@ -24,7 +33,7 @@ export function BackgroundImage({
     return () => {
       scrollbar.removeListener(handleScroll);
     };
-  }, [scrollbar]);
+  }, [scrollbar, scrollSpeed]);
   return (
     <>
       <div
