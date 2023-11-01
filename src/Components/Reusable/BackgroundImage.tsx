@@ -3,14 +3,12 @@ import { useEffect, useState } from "react";
 import Scrollbar from "smooth-scrollbar";
 
 type backgroundProps = {
-  zoomFactor: number;
-  scrollbar: Scrollbar;
+  scrollbar: Scrollbar | null;
   Background: string;
   scrollSpeed: number;
 };
 
 export function BackgroundImage({
-  zoomFactor,
   scrollbar,
   Background,
   scrollSpeed,
@@ -37,16 +35,16 @@ export function BackgroundImage({
   return (
     <>
       <div
-        className="overflow-hidden bg-cover h-full bg-center bg-no-repeat w-full absolute"
+        className="overflow-hidden bg-fixed h-full  bg-no-repeat w-full absolute"
         style={{
           backgroundImage: `url(${Background})`,
           transform: `translateY(${translateY}px) `,
-          maxWidth: "100vw",
-          maxHeight: "100vh",
-          backgroundSize: `${zoomFactor * 100}%`, // adjust the background size
+
+          backgroundPosition: "35% 10%", // 25% from the left and 50% from the top
+          backgroundSize: `cover`, // adjust the background size
         }}
       >
-        <div className="bg-black opacity-20 h-full w-full absolute"></div>
+        <div className="bg-black opacity-30 h-full w-full absolute"></div>
       </div>
     </>
   );

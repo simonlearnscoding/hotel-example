@@ -2,6 +2,8 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      backgroundColor: ["active"],
+      textColor: ["active"],
       fontFamily: {
         sans: [
           "Helvetica",
@@ -22,7 +24,11 @@ module.exports = {
         ],
         serif: ["Baskerville", "Georgia", "Times New Roman", "Times", "serif"],
       },
+      colors: {
+        black: "#201315",
+        white: "#F8F3EB",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-hero-patterns")],
 };
