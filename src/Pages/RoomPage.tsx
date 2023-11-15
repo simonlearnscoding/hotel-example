@@ -1,5 +1,6 @@
 
-import { useLanguage, LanguageType } from './../Hooks/LanguageProvider'
+import { LanguageType } from './../Hooks/LanguageProvider'
+import { useLanguage } from '../Hooks/useLanguage';
 import { DefaultRooms, Room } from './../Data/defaultRoomsData'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
 import { Link } from 'react-router-dom'
@@ -14,7 +15,7 @@ import { ScrollDown } from './../Components/Reusable/ScrollDown'
 import { useParallaxScroll } from './../Components/useParallaxScroll'; // path to your custom hook
 
 type RoomProp = {
-  container: string,
+  container : string,
 }
 // export function RoomPage({ Room }: RoomProp?) {
 //   return <h1>HI MOM!!</h1>
@@ -22,9 +23,10 @@ type RoomProp = {
 //
 
 type ComponentProps = {
-  room: Room,
+  room : Room,
 }
-export function RoomPage({ container }: RoomProp) {
+export function RoomPage ( { container } : RoomProp )
+{
 
   const { language } = useLanguage()
 
@@ -39,51 +41,53 @@ export function RoomPage({ container }: RoomProp) {
   // Convert roomId to a number
 
   // Find the room with the same id as roomId
-  const room = DefaultRooms.find((room: Room) => room.id === roomId);
+  const room = DefaultRooms.find( ( room : Room ) => room.id === roomId );
+  const { ref, currentSection, scrollTo } = useParallaxScroll( sections );
 
-  if (!room) {
+  if ( !room )
+  {
     // Handle the case where the room is not found
     return <div>Room not found</div>;
   }
 
-  const { ref, currentSection, scrollTo } = useParallaxScroll(sections);
-  if (!ref) {
+  if ( !ref )
+  {
     return null
   }
-  else {
+  else
+  {
 
-    console.log('rerendered rooms page')
+    console.log( 'rerendered rooms page' )
     // Render the room details
     return (
-      <div className={` w-screen h-screen `}>
+      <div className={ ` w-screen h-screen ` }>
 
 
-        <Parallax ref={ref} pages={2}>
+        <Parallax ref={ ref } pages={ 2 }>
 
-          <ParallaxLayer offset={0} sticky={{ start: 0, end: 2.7 }} style={{ position: 'fixed', zIndex: 100, pointerEvents: 'none', width: '100%', bottom: '2rem', textAlign: 'center' }}>
-            <ScrollDown sections={sections} currentSection={currentSection} scrollTo={scrollTo} />
+          <ParallaxLayer offset={ 0 } sticky={ { start: 0, end: 2.7 } } style={ { position: 'fixed', zIndex: 100, pointerEvents: 'none', width: '100%', bottom: '2rem', textAlign: 'center' } }>
+            <ScrollDown sections={ sections } currentSection={ currentSection } scrollTo={ scrollTo } />
           </ParallaxLayer>
-          <FullScreenSection backgroundImageUrl={room.img_hd} imageSpeed={0.5}>
-            <Component room={room} />
+          <FullScreenSection backgroundImageUrl={ room.img_hd } imageSpeed={ 0.5 }>
+            <Component room={ room } />
           </FullScreenSection>
-          <ParallaxLayer sticky={{ start: 0.99, end: 3 }}>
-            <div className={` ${container} flex  justify-start flex-1 items-start flex-col  text-4xl w-screen z-10 h-screen`}>
-              <div className='  w-full lg:pt-36 pt-24   pb-10 lg:pb-20 lg:text-[47px] text-3xl  '> {room.name[language as LanguageType]} Features</div>
+          <ParallaxLayer sticky={ { start: 0.99, end: 3 } }>
+            <div className={ ` ${ container } flex  justify-start flex-1 items-start flex-col  text-4xl w-screen z-10 h-screen` }>
+              <div className='  w-full lg:pt-36 pt-24   pb-10 lg:pb-20 lg:text-[47px] text-3xl  '> { room.name[ language as LanguageType ] } Features</div>
               <div className=" w-full   flex-col lg:flex-row flex-1 flex ">
                 <div className=" w-8/12  ">
-                  < FeatureItem description={`${room.roomSize}qm`} Icon={Cube} />
-                  < FeatureItem description={room.capacity} Icon={People} />
-                  < FeatureItem description={room.technologies} Icon={TV} />
+                  < FeatureItem description={ `${ room.roomSize }qm` } Icon={ Cube } />
+                  < FeatureItem description={ room.capacity } Icon={ People } />
+                  < FeatureItem description={ room.technologies } Icon={ TV } />
                 </div>
                 <div className="  w-full   flex flex-col pt-8 lg:pt-0 justify-start   ">
-                  < DescriptionComponent description={"Spacious room with modern amenities"} />
-                  < DescriptionComponent description={"Compoimentary access to the hotel's spa and fitness center"} />
+                  < DescriptionComponent description={ "Spacious room with modern amenities" } />
+                  < DescriptionComponent description={ "Compoimentary access to the hotel's spa and fitness center" } />
                 </div>
 
-                <div className=" w-full h-full lg:mb-24 mb-40 flex    justify-center lg:items-start items-end justify-start">
-                  <div className="  text-center flex justify-start px-12  items-center lg:ml-10 lg:fixed   text-white lg:bottom-40 border-[1px] lg:left-0 py-4 border-white flex items-center justify-start font-bold text-lg lg:text-2xl">
-                    <div className="hover:text-primary transition-all text-center cursor-pointer
-">
+                <div className=" w-full h-full lg:mb-24 mb-40 flex     lg:items-start items-end justify-start">
+                  <div className="  text-center flex  px-12   lg:ml-10 lg:fixed   text-white lg:bottom-40 border-[1px] lg:left-0 py-4 border-white  items-center justify-start font-bold text-lg lg:text-2xl">
+                    <div className="hover:text-primary transition-all text-center cursor-pointer ">
                       CHECK AVAILABILITY
                     </div>
 
@@ -101,15 +105,16 @@ export function RoomPage({ container }: RoomProp) {
 }
 
 
-function Component({ room }: ComponentProps) {
+function Component ( { room } : ComponentProps )
+{
 
   const { language } = useLanguage()
   return <div className=" w-full h-full flex justify-center items-center"
   >
-    <h1 className="lg:text-[80px] text-4xl font-serit"> {room.name[language] as LanguageType}</h1>
+    <h1 className="lg:text-[80px] text-4xl font-serit"> { room.name[ language ] as LanguageType }</h1>
 
     <div className="w-full md:top-32 md:left-10 top-24 left-4 fixed  ">
-      <Link to={'/'} className="text-2xl">  < IoIosArrowBack />  </Link>
+      <Link to={ '/' } className="text-2xl">  < IoIosArrowBack />  </Link>
     </div>
 
 
@@ -118,33 +123,39 @@ function Component({ room }: ComponentProps) {
 
 }
 
+// type IconType = {
+//   size : string
+// }
 type ItemProps = {
-  description: {},
-  Icon: React.ComponentType
+  description : string,
+  Icon : React.ComponentType<{ size : string }>
+
 }
-function FeatureItem({ description, Icon }: ItemProps) {
+function FeatureItem ( { description, Icon } : ItemProps )
+{
 
   return (
     <>
       <div className=" flex py-4  justify-around   border-white  " >
         <div className="flex px-0 justify-center items-center">
-          <Icon size={"32px"} />
+          <Icon size={ "32px" } />
         </div>
-        <div className=" w-full  h-full lg:px-10 px-4 text-lg lg:text-xl "> {description} </div>
+        <div className=" w-full  h-full lg:px-10 px-4 text-lg lg:text-xl "> { description } </div>
       </div>
     </>
   )
 }
 
 
-function DescriptionComponent({ description }: { description: string }) {
+function DescriptionComponent ( { description } : { description : string } )
+{
 
-  const { language } = useLanguage()
+  useLanguage()
   return (
     <>
       <div className="  py-4  flex items-center  jusrify-center text-xl    " >
         <div className="w-4 h-4 bg-white rounded-xl mr-8 "></div>
-        <div className="w-full h-full">{description}</div>
+        <div className="w-full h-full">{ description }</div>
       </div>
     </>
   )

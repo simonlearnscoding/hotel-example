@@ -3,24 +3,24 @@ import hotel_room_1 from "../assets/hotel-room-1.jpeg";
 import hotel_room_2 from "../assets/hotel-room-2.jpg";
 import hotel_room_3 from "../assets/hotel-room-3.jpeg";
 import hotel_room_4 from "../assets/hotel-room-4.jpeg";
-import hotel_room_5 from "../assets/hotel-room-5.jpg";
+// import hotel_room_5 from "../assets/hotel-room-5.jpg";
 import hotel_room_hd from "../assets/hotel-room-hd-1.jpg";
 
 import { LanguageType } from './../Hooks/LanguageProvider'
 
 export type Room = {
-  id: string;
-  name: Record<LanguageType, string>;
-  description: Record<LanguageType, string>;
-  price: number;
-  roomSize: number; // in square meters
-  capacity: string; // Example: "2 Adults 1 Child"
-  technologies: string; // Example: "TV and Free Wi-Fi"
-  img: string;
-  img_hd: string;
+  id : string;
+  name : Record<LanguageType, string>;
+  description : Record<LanguageType, string>;
+  price : number;
+  roomSize : number; // in square meters
+  capacity : string; // Example: "2 Adults 1 Child"
+  technologies : string; // Example: "TV and Free Wi-Fi"
+  img : string;
+  img_hd : string;
 };
 
-export const DefaultRooms: Room[] = [
+export const DefaultRooms : Room[] = [
   {
     id: "1",
     name: {
