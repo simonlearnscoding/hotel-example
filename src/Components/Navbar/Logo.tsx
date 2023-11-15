@@ -1,8 +1,10 @@
 import React from "react";
 
-export const Logo = () => {
+export const Logo = ({ classNames }) => {
   return (
-    <div className="fixed top-14 z-900 right-1/2 -translate-x-1/2 ">
+    <div
+      className={`${classNames} fixed md:mt-8 top-6 z-900 right-1/2 translate-x-1/2`}
+    >
       <svg
         id="logo-60"
         width="2em"

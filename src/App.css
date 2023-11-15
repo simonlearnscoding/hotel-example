@@ -1,6 +1,15 @@
 body {
   overflow-x: hidden;
 }
+
+.icon-rotate {
+  transition: transform 0.8s ease;
+}
+
+.icon-rotate.rotate-180 {
+  
+  transform: rotate(180deg);
+}
 #root {
   /* max-width: 1280px; */
 
