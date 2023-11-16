@@ -6,6 +6,18 @@ body {
   transition: transform 0.8s ease;
 }
 
+.active-menu {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 1s ease-in-out, visibility 0s ease-in-out 0s;
+}
+
+.inactive-menu {
+  opacity: 0%;
+  pointer-events: none;
+  transition: opacity 1s ease-in-out, visibility 0s ease-in-out 1s;
+}
+
 .icon-rotate.rotate-180 {
   
   transform: rotate(180deg);
